@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100%;
+        width: 100%;
+      }
+
+      .circles {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .circle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+        width: 20px;
+        background-color: #fff;
+        border-radius: 50%;
+      }
+      .hide {
+        display: none;
+      }
+      img {
+        height: 80vh;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body style="background-color: black">
+    <div class="container"></div>
+    <div class="circles hide">
+      <div id="0" class="circle"></div>
+      <div id="1" class="circle"></div>
+      <div id="2" class="circle"></div>
+    </div>
+    <script>
+      let cont = document.querySelector(".container");
+      let circles = document.querySelector(".circles");
+      let obj = [
+        {
+          id: 0,
+          src: "https://images.pexels.com/photos/26049747/pexels-photo-26049747/free-photo-of-a-kangaroo-is-standing-in-front-of-a-window.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        },
+        {
+          id: 1,
+          src: "https://images.pexels.com/photos/20347150/pexels-photo-20347150/free-photo-of-landscape-of-countryside-and-volcano-behind-on-java-in-indonesia.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+        },
+        {
+          id: 2,
+          src: "https://images.pexels.com/photos/25642779/pexels-photo-25642779/free-photo-of-maidens-tower-in-turkey.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+        },
+      ];
+      let clutter = "";
+      let idx = 0;
+      let newId = 0;
+      let intervel;
+      let blue;
+      let main = () => {
+       intervel = setInterval(() => {
+          if (idx < obj.length) {
+            if (newId < 2) {
+              newId = idx > 0 ? idx - 1 : 0;
+            }
+            document.getElementById(newId).style.backgroundColor = "white";
+         document.getElementById(idx).style.backgroundColor = "blue";
+
+         blue= idx
+            let source = obj[idx].src;
+            cont.innerHTML = `<img  style="object-fit: cover;" src="${source}" alt="">`;
+            circles.classList.remove("hide");
+            ++idx;
+            if (newId == 2) {
+              newId = 0;
+            }
+          } else {
+            newId = 2;
+            idx = 0;
+          }
+        }, 1000);
+
+      };
+
+      circles.addEventListener("click", (e) => {
+        document.getElementById(blue).style.backgroundColor = "white";
+        clearInterval(intervel);
+        let startId = e.target.id;
+        idx=startId;
+          // newId = idx-1;
+      main();
+        });
+
+      main();
+    </script>
+  </body>
+</html>
