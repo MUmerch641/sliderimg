@@ -95,12 +95,11 @@
       };
 
       circles.addEventListener("click", (e) => {
-        document.getElementById(blue).style.backgroundColor = "white";
+     if( e.target.id){   document.getElementById(blue).style.backgroundColor = "white";
         clearInterval(intervel);
         let startId = e.target.id;
         idx=startId;
-          // newId = idx-1;
-      main();
+      main();}
         });
 
       main();
